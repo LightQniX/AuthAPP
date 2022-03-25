@@ -3,6 +3,10 @@ import psycopg2
 import json
 import random
 import string
+import os
+
+
+port = int(os.environ.get('PORT', 5000))
 
 dbhost = 'ec2-54-216-17-9.eu-west-1.compute.amazonaws.com'
 dbname = 'djrs2mt5np83b'
@@ -138,8 +142,9 @@ def register():
     else:
         return {'auth': 'user exists'}, 403
 
+app.run(threaded=True,host='0.0.0.0', port=port)
 
-app.run(debug=True, host='localhost', port=5003)
+#app.run(debug=True, host='localhost', port=5003)
 
 
 
